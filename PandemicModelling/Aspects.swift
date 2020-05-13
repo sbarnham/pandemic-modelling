@@ -13,11 +13,8 @@ class Aspects {
     var r0: Double = 1.2
     var averageMortalityRate: Double = 0.05
     var population: Int = 5000
+    var diseaseLength: Int = 6
     var lockdownAbidingRate: Double = 0
     var socialDistancing: Bool = false
-    var over65Proportion: Double = 0
-    var over65MortalityRate: Double = 0
-    var teenageProportion: Double = 0
-    var teenageMortalityRate: Double = 0
     var vaccinationRate: Double = 0
 }
