@@ -10,7 +10,7 @@ import Foundation
 
 class Aspects {
     let name: String = "Virus X"
-    var r0: Double = 1.2
+    var r0: Double = 2
     var averageMortalityRate: Double = 0.05
     var population: Int = 5000
     var diseaseLength: Int = 6

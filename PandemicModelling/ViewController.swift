@@ -21,18 +21,26 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        susceptibleLabel.text = "Susceptible: nil"
+        infectedLabel.text = "Infected: nil"
+        removedLabel.text = "Removed: nil"
+        
         // Do any additional setup after loading the view.
     }
     
-    
     func simulation() {
         modeller.r = aspects.r0
-        while modeller.infected != 0 {
-            let tuple = modeller.simulate(data: aspects)
-            susceptibleLabel.text = "Susceptible: \(tuple.0)"
-            infectedLabel.text = "Infected: \(tuple.1)"
-            removedLabel.text = "Removed: \(tuple.2)"
+        modeller.susceptible = (aspects.population - 1)
+            Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { timer in
+            if self.modeller.infected == 0 {
+                timer.invalidate()
+            }
+            let tuple = self.modeller.simulate(data: self.aspects)
+            self.susceptibleLabel.text = "Susceptible: \(tuple.0)"
+            self.infectedLabel.text = "Infected: \(tuple.1)"
+            self.removedLabel.text = "Removed: \(tuple.2)"
         }
+        
     }
     
     @IBAction func simulateButton(_ sender: Any) {

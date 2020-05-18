@@ -12,13 +12,12 @@ class Modeller {
     var infected: Int = 1
     var r: Double = 0
     var removed: Int = 0
-    var day: Int = 1
     var susceptible: Int = 0
-    var infectedNumbers: [Int] = []
+    var infectedNumbers: [Int] = [1]
     var newInfected: Int = 0
     
     func simulate(data: Aspects) -> (Int, Int, Int) {
-        r = r * Double((susceptible / data.population))
+        r = r * Double(susceptible) / Double(data.population)
         newInfected = Int(round(Double(infected) * r))
         infected += newInfected
         if infectedNumbers.count != data.diseaseLength {
