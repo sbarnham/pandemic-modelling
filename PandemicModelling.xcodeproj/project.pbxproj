@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5A6A806624745F4F00A5B131 /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AC4F74A2474027400153B34 /* Charts.framework */; };
+		5A6A806724745F4F00A5B131 /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5AC4F74A2474027400153B34 /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5AE0857B2469D8B5005F0831 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE0857A2469D8B5005F0831 /* AppDelegate.swift */; };
 		5AE0857D2469D8B5005F0831 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE0857C2469D8B5005F0831 /* SceneDelegate.swift */; };
 		5AE0857F2469D8B5005F0831 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE0857E2469D8B5005F0831 /* ViewController.swift */; };
@@ -20,6 +22,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		5AC4F7492474027400153B34 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5AC4F7442474027400153B34 /* Charts.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 65AD9E95D9ED4DC0BD73A743;
+			remoteInfo = Charts;
+		};
+		5AC4F74B2474027400153B34 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5AC4F7442474027400153B34 /* Charts.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 1CBBC58C6CE1EBEE9852CE41;
+			remoteInfo = ChartsTests;
+		};
 		5AE0858E2469D8B6005F0831 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 5AE0856F2469D8B5005F0831 /* Project object */;
@@ -36,7 +52,22 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		5A6A806824745F4F00A5B131 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				5A6A806724745F4F00A5B131 /* Charts.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		5AC4F7442474027400153B34 /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = "../../../Downloads/Charts-master/Charts.xcodeproj"; sourceTree = "<group>"; };
 		5AE085772469D8B5005F0831 /* PandemicModelling.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PandemicModelling.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5AE0857A2469D8B5005F0831 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5AE0857C2469D8B5005F0831 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -60,6 +91,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5A6A806624745F4F00A5B131 /* Charts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -80,6 +112,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5AC4F7452474027400153B34 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5AC4F74A2474027400153B34 /* Charts.framework */,
+				5AC4F74C2474027400153B34 /* ChartsTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		5AE0856E2469D8B5005F0831 = {
 			isa = PBXGroup;
 			children = (
@@ -87,6 +128,8 @@
 				5AE085902469D8B6005F0831 /* PandemicModellingTests */,
 				5AE0859B2469D8B6005F0831 /* PandemicModellingUITests */,
 				5AE085782469D8B5005F0831 /* Products */,
+				5AC4F7442474027400153B34 /* Charts.xcodeproj */,
+				5AEF1E60247422BE00B8FFBF /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -134,6 +177,13 @@
 			path = PandemicModellingUITests;
 			sourceTree = "<group>";
 		};
+		5AEF1E60247422BE00B8FFBF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -144,6 +194,7 @@
 				5AE085732469D8B5005F0831 /* Sources */,
 				5AE085742469D8B5005F0831 /* Frameworks */,
 				5AE085752469D8B5005F0831 /* Resources */,
+				5A6A806824745F4F00A5B131 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -224,6 +275,12 @@
 			mainGroup = 5AE0856E2469D8B5005F0831;
 			productRefGroup = 5AE085782469D8B5005F0831 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 5AC4F7452474027400153B34 /* Products */;
+					ProjectRef = 5AC4F7442474027400153B34 /* Charts.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				5AE085762469D8B5005F0831 /* PandemicModelling */,
@@ -232,6 +289,23 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		5AC4F74A2474027400153B34 /* Charts.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Charts.framework;
+			remoteRef = 5AC4F7492474027400153B34 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		5AC4F74C2474027400153B34 /* ChartsTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = ChartsTests.xctest;
+			remoteRef = 5AC4F74B2474027400153B34 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		5AE085752469D8B5005F0831 /* Resources */ = {
@@ -444,6 +518,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = PandemicModelling/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -461,6 +536,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = PandemicModelling/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
