@@ -55,6 +55,7 @@ class SimulationViewController: UIViewController {
     
     func simulation() {
         modeller.reset()
+        day = 0
         modeller.r = aspects.r0
         modeller.susceptible = (aspects.population - 1)
         susceptibleDataEntries.append(ChartDataEntry(x: 0, y: Double(modeller.susceptible)))
@@ -89,7 +90,7 @@ class SimulationViewController: UIViewController {
     //Formatting each line of data. Required after every alteration of data (due to how the library works).
     fileprivate func dataSetFormatting(chartDataSet: LineChartDataSet, colour: UIColor) {
         chartDataSet.mode = .cubicBezier
-        chartDataSet.cubicIntensity = 0.2
+        chartDataSet.cubicIntensity = 0.05
         chartDataSet.lineWidth = 3
         chartDataSet.circleRadius = 2.5
         chartDataSet.setColor(colour)
