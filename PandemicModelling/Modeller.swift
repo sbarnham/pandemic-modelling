@@ -30,5 +30,13 @@ class Modeller {
         susceptible = data.population - infected - removed
         return (susceptible, infected, removed)
     }
+    
+    
+    //Resets default values for variables not automatically reset by the simulation() method in the SimulationViewController class.
+    func reset() {
+        removed = 0
+        infectedNumbers = [1]
+        infected = 1
+    }
     }
 
