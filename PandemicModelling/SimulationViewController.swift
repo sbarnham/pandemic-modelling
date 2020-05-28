@@ -31,10 +31,11 @@ class SimulationViewController: UIViewController {
     //Setup of chart modifications and formats
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.backgroundColor = UIColor(red: 0.76, green: 0.87, blue: 0.91, alpha: 1)
         susceptibleLabel.text = "Susceptible: nil"
         infectedLabel.text = "Infected: nil"
         removedLabel.text = "Removed: nil"
-        lineChart.backgroundColor = .white
+        lineChart.backgroundColor = UIColor(red: 0.76, green: 0.87, blue: 0.91, alpha: 1)
         lineChart.drawGridBackgroundEnabled = false
         lineChart.rightAxis.enabled = false
         lineChart.xAxis.labelPosition = .bottom
@@ -54,6 +55,10 @@ class SimulationViewController: UIViewController {
     
     func simulation() {
         modeller.reset()
+        susceptibleDataEntries.removeAll()
+        infectedDataEntries.removeAll()
+        survivedDataEntries.removeAll()
+        deceasedDataEntries.removeAll()
         day = 0
         modeller.r = Aspects.r0
         modeller.susceptible = (Aspects.population - 1)
