@@ -9,12 +9,11 @@
 import Foundation
 
 class Aspects {
-    let name: String = "Virus X"
-    var r0: Double = 3
-    var averageMortalityRate: Double = 0.2
-    var population: Int = 50000
-    var diseaseLength: Int = 6
-    var lockdownAbidingRate: Double = 0
-    var socialDistancing: Bool = false
-    var vaccinationRate: Double = 0
+    static var r0: Double = 3
+    static var averageMortalityRate: Double = 0.2
+    static var population: Int = 50000
+    static var diseaseLength: Int = 6
+    static var lockdownAbidingRate: Double = 0
+    static var socialDistancing: Bool = false
+    static var vaccinationRate: Double = 0
 }

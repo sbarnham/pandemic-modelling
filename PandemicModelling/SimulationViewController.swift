@@ -20,7 +20,6 @@ class SimulationViewController: UIViewController {
     
     @IBOutlet var removedLabel: UILabel!
     
-    var aspects = Aspects()
     var modeller = Modeller()
     var infectedDataEntries: [ChartDataEntry] = []
     var susceptibleDataEntries: [ChartDataEntry] = []
@@ -56,8 +55,8 @@ class SimulationViewController: UIViewController {
     func simulation() {
         modeller.reset()
         day = 0
-        modeller.r = aspects.r0
-        modeller.susceptible = (aspects.population - 1)
+        modeller.r = Aspects.r0
+        modeller.susceptible = (Aspects.population - 1)
         susceptibleDataEntries.append(ChartDataEntry(x: 0, y: Double(modeller.susceptible)))
         infectedDataEntries.append(ChartDataEntry(x: 0, y: 1))
         survivedDataEntries.append(ChartDataEntry(x: 0, y: 0))
@@ -65,12 +64,12 @@ class SimulationViewController: UIViewController {
             if self.modeller.infected == 0 {
                 timer.invalidate()
             }
-            let tuple = self.modeller.simulate(data: self.aspects)
+            let tuple = self.modeller.simulate()
             self.susceptibleLabel.text = "Susceptible: \(tuple.0)"
             self.infectedLabel.text = "Infected: \(tuple.1)"
             self.removedLabel.text = "Removed: \(tuple.2)"
             self.day += 1
-            self.deceased = round(Double(tuple.2) * self.aspects.averageMortalityRate)
+            self.deceased = round(Double(tuple.2) * Aspects.averageMortalityRate)
             self.susceptibleDataEntries.append(ChartDataEntry(x: self.day, y: Double(tuple.0)))
             self.infectedDataEntries.append(ChartDataEntry(x: self.day, y: Double(tuple.1)))
             self.survivedDataEntries.append(ChartDataEntry(x: self.day, y: Double(tuple.2) - Double(self.deceased)))

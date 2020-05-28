@@ -17,19 +17,19 @@ class Modeller {
     var newInfected: Int = 0
     
     //The basic simulation function.
-    func simulate(data: Aspects) -> (Int, Int, Int) {
-        r = r * Double(susceptible) / Double(data.population)
+    func simulate() -> (Int, Int, Int) {
+        r = r * Double(susceptible) / Double(Aspects.population)
         newInfected = Int(round(Double(infected) * r))
         infected += newInfected
-        if infected > data.population {
-            infected = data.population
+        if infected > Aspects.population {
+            infected = Aspects.population
         }
-        if infectedNumbers.count != data.diseaseLength {
+        if infectedNumbers.count != Aspects.diseaseLength {
             infectedNumbers.append(newInfected)
         } else {
             removed += infectedNumbers[0]
-            if removed > data.population {
-                removed = data.population
+            if removed > Aspects.population {
+                removed = Aspects.population
             }
             infected -= infectedNumbers.remove(at: 0)
             if infected < 0 {
@@ -38,7 +38,7 @@ class Modeller {
             infectedNumbers.append(newInfected)
         }
         if susceptible > 0 {
-            susceptible = data.population - infected - removed
+            susceptible = Aspects.population - infected - removed
             if susceptible < 0 {
                 susceptible = 0
             }
