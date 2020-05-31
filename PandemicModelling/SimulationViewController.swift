@@ -87,6 +87,10 @@ class SimulationViewController: UIViewController {
     @IBAction func simulateButton(_ sender: Any) {
         lineChart.clear()
         lineChart.clearValues()
+        if Aspects.invalidData == true {
+            errorAlert()
+            return
+        }
         simulation()
     }
     
@@ -116,6 +120,12 @@ class SimulationViewController: UIViewController {
         dataSetFormatting(chartDataSet: survChartDataSet, colour: .gray)
         dataSetFormatting(chartDataSet: decChartDataSet, colour: .black)
         lineChart.data = chartData
+    }
+    
+    func errorAlert() {
+        let alert = UIAlertController(title: "One or more inputs are invalid", message: "Please navigate to the 'Edit Virus' screen and enter valid data for all input fields", preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        self.present(alert, animated: true)
     }
 }
 

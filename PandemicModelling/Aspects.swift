@@ -16,4 +16,5 @@ class Aspects {
     static var lockdownAbidingRate: Double = 0
     static var socialDistancing: Bool = false
     static var vaccinationRate: Double = 0
+    static var invalidData: Bool = false
 }

@@ -18,15 +18,15 @@ class VirusMenuViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        textFieldSetup(textField: populationField)
+        textFieldSetup(textField: r0Field)
+        textFieldSetup(textField: diseaseLengthField)
+        textFieldSetup(textField: averageMortalityRateField)
         self.view.backgroundColor = UIColor(red: 0.76, green: 0.87, blue: 0.91, alpha: 1)
         populationField.placeholder = String(Aspects.population)
         r0Field.placeholder = String(Aspects.r0)
         diseaseLengthField.placeholder = String(Aspects.diseaseLength)
         averageMortalityRateField.placeholder = String(Aspects.averageMortalityRate * 100)
-        populationField.delegate = self
-        r0Field.delegate = self
-        diseaseLengthField.delegate = self
-        averageMortalityRateField.delegate = self
         // Do any additional setup after loading the view.
     }
     
@@ -45,6 +45,10 @@ class VirusMenuViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    func textFieldSetup(textField: UITextField) {
+        textField.text?.removeAll()
+        textField.delegate = self
+    }
     
     func saveAspects() {
         Aspects.population = Int(populationField.text!) ?? 50000
@@ -54,6 +58,7 @@ class VirusMenuViewController: UIViewController, UITextFieldDelegate {
     }
     
     func checkForWarnings(textField: UITextField) {
+        Aspects.invalidData = false
         if Aspects.population <= 0 {
             errorAlert(error: "Population count is 0 or below.", severity: "S", textField: textField)
         }
@@ -80,6 +85,7 @@ class VirusMenuViewController: UIViewController, UITextFieldDelegate {
         } else {
             textField.backgroundColor = UIColor(red: 1, green: 0.647, blue: 0, alpha: 0.3)
         }
+        Aspects.invalidData = true
     }
     /*
     // MARK: - Navigation
