@@ -15,18 +15,32 @@ class VirusMenuViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var r0Field: UITextField!
     @IBOutlet var diseaseLengthField: UITextField!
     @IBOutlet var averageMortalityRateField: UITextField!
+    @IBOutlet var socialDistancingButton: UISwitch!
+    @IBOutlet var socialDistancingSliderValue: UILabel!
+    @IBOutlet var socialDistancingExplainer: UILabel!
+    @IBOutlet var socialDistancingSlider: UISlider!
+    @IBOutlet var lockdownLabel: UILabel!
+    @IBOutlet var lockdownButton: UISwitch!
+    @IBOutlet var activationThresholdSDField: UITextField!
+    @IBOutlet var activationThresholdExplainer: UILabel!
+    @IBOutlet var activationThresholdLabel: UILabel!
+    var hideLabels = true
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        labelMovement()
         textFieldSetup(textField: populationField)
         textFieldSetup(textField: r0Field)
         textFieldSetup(textField: diseaseLengthField)
         textFieldSetup(textField: averageMortalityRateField)
+        textFieldSetup(textField: activationThresholdSDField)
         self.view.backgroundColor = UIColor(red: 0.76, green: 0.87, blue: 0.91, alpha: 1)
         populationField.placeholder = String(Aspects.population)
         r0Field.placeholder = String(Aspects.r0)
         diseaseLengthField.placeholder = String(Aspects.diseaseLength)
         averageMortalityRateField.placeholder = String(Aspects.averageMortalityRate * 100)
+        activationThresholdSDField.placeholder = String(Aspects.socialDistancingActivationThreshold)
         // Do any additional setup after loading the view.
     }
     
@@ -50,11 +64,21 @@ class VirusMenuViewController: UIViewController, UITextFieldDelegate {
         textField.delegate = self
     }
     
+    
+    @IBAction func sliderValueChanged(_ sender: Any) {
+        socialDistancingSliderValue.text = String(format: "%.0f", socialDistancingSlider.value)
+        Aspects.socialDistancingEffect = Double(1 - (socialDistancingSlider.value / 100))
+    }
+    
+    
+    
+    
     func saveAspects() {
         Aspects.population = Int(populationField.text!) ?? 50000
         Aspects.r0 = Double(r0Field.text!) ?? 3
         Aspects.diseaseLength = Int(diseaseLengthField.text!) ?? 6
         Aspects.averageMortalityRate = ((Double(averageMortalityRateField.text!) ?? 2) / 100.0)
+        Aspects.socialDistancingActivationThreshold = Int(activationThresholdSDField.text!) ?? 20000
     }
     
     func checkForWarnings(textField: UITextField) {
@@ -74,6 +98,9 @@ class VirusMenuViewController: UIViewController, UITextFieldDelegate {
         if Aspects.averageMortalityRate > 1 || Aspects.averageMortalityRate < 0 {
             errorAlert(error: "Mortality rate is not between 0 and 100%.", severity: "S", textField: textField)
         }
+        if Aspects.socialDistancingActivationThreshold < (Aspects.population / 5) {
+            errorAlert(error: "Social distancing activation threshold is low, and may not be reflected in real life.", severity: "M", textField: textField)
+        }
     }
     
     func errorAlert(error: String, severity: String, textField: UITextField) {
@@ -87,6 +114,29 @@ class VirusMenuViewController: UIViewController, UITextFieldDelegate {
         }
         Aspects.invalidData = true
     }
+    
+    
+    @IBAction func socialDistancingButtonPressed(_ sender: Any) {
+        labelMovement()
+    }
+    
+    func labelMovement() {
+        if socialDistancingButton.isOn == false {
+            lockdownLabel.frame.origin = CGPoint(x: 20, y: 353)
+            lockdownButton.frame.origin = CGPoint(x: 293, y: 353)
+            hideLabels = true
+        } else {
+            hideLabels = false
+            lockdownLabel.frame.origin = CGPoint(x: 20, y: 501)
+            lockdownButton.frame.origin = CGPoint(x: 293, y: 501)
+        }
+        socialDistancingSlider.isHidden = hideLabels
+        socialDistancingSliderValue.isHidden = hideLabels
+        socialDistancingExplainer.isHidden = hideLabels
+        activationThresholdSDField.isHidden = hideLabels
+        activationThresholdExplainer.isHidden = hideLabels
+        activationThresholdLabel.isHidden = hideLabels
+    }
     /*
     // MARK: - Navigation
 
@@ -96,5 +146,5 @@ class VirusMenuViewController: UIViewController, UITextFieldDelegate {
         // Pass the selected object to the new view controller.
     }
     */
-
+    
 }

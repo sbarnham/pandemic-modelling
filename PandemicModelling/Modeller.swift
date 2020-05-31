@@ -19,6 +19,9 @@ class Modeller {
     //The basic simulation function.
     func simulate() -> (Int, Int, Int) {
         r = r * Double(susceptible) / Double(Aspects.population)
+        if infected >= Aspects.socialDistancingActivationThreshold {
+            r = r * Aspects.socialDistancingEffect
+        }
         newInfected = Int(round(Double(infected) * r))
         infected += newInfected
         if infected > Aspects.population {
