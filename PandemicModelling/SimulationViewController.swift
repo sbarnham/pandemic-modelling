@@ -13,12 +13,14 @@ class SimulationViewController: UIViewController {
     
     
     @IBOutlet var lineChart: LineChartView!
-
     @IBOutlet var susceptibleLabel: UILabel!
-    
     @IBOutlet var infectedLabel: UILabel!
-    
-    @IBOutlet var removedLabel: UILabel!
+    @IBOutlet var survivedLabel: UILabel!
+    @IBOutlet var deceasedLabel: UILabel!
+    @IBOutlet var susceptibleSwitch: UISwitch!
+    @IBOutlet var infectedSwitch: UISwitch!
+    @IBOutlet var survivedSwitch: UISwitch!
+    @IBOutlet var deceasedSwitch: UISwitch!
     
     var modeller = Modeller()
     var infectedDataEntries: [ChartDataEntry] = []
@@ -27,6 +29,10 @@ class SimulationViewController: UIViewController {
     var deceasedDataEntries: [ChartDataEntry] = []
     var day: Double = 0
     var deceased: Double = 0
+    var susceptibleLineShown: Bool = true
+    var infectedLineShown: Bool = true
+    var survivedLineShown: Bool = true
+    var deceasedLineShown: Bool = true
     
     //Setup of chart modifications and formats
     override func viewDidLoad() {
@@ -34,7 +40,8 @@ class SimulationViewController: UIViewController {
         self.view.backgroundColor = UIColor(red: 0.76, green: 0.87, blue: 0.91, alpha: 1)
         susceptibleLabel.text = "Susceptible: nil"
         infectedLabel.text = "Infected: nil"
-        removedLabel.text = "Removed: nil"
+        survivedLabel.text = "Removed: nil"
+        deceasedLabel.text = "Deceased: nil"
         lineChart.backgroundColor = UIColor(red: 0.76, green: 0.87, blue: 0.91, alpha: 1)
         lineChart.drawGridBackgroundEnabled = false
         lineChart.rightAxis.enabled = false
@@ -70,11 +77,13 @@ class SimulationViewController: UIViewController {
                 timer.invalidate()
             }
             let tuple = self.modeller.simulate()
+            self.deceased = round(Double(tuple.2) * (Aspects.averageMortalityRate / 100))
             self.susceptibleLabel.text = "Susceptible: \(tuple.0)"
             self.infectedLabel.text = "Infected: \(tuple.1)"
-            self.removedLabel.text = "Removed: \(tuple.2)"
+            self.survivedLabel.text = "Survived: \(tuple.2)"
+            self.deceasedLabel.text = "Deceased: \(self.deceased)"
             self.day += 1
-            self.deceased = round(Double(tuple.2) * Aspects.averageMortalityRate)
+            
             self.susceptibleDataEntries.append(ChartDataEntry(x: self.day, y: Double(tuple.0)))
             self.infectedDataEntries.append(ChartDataEntry(x: self.day, y: Double(tuple.1)))
             self.survivedDataEntries.append(ChartDataEntry(x: self.day, y: Double(tuple.2) - Double(self.deceased)))
@@ -87,12 +96,39 @@ class SimulationViewController: UIViewController {
     @IBAction func simulateButton(_ sender: Any) {
         lineChart.clear()
         lineChart.clearValues()
+        switchCheck()
         if Aspects.invalidData == true {
             errorAlert()
             return
         }
         simulation()
     }
+    
+    
+    
+    func switchCheck() {
+        if susceptibleSwitch.isOn == false {
+            susceptibleLineShown = false
+        } else {
+            susceptibleLineShown = true
+        }
+        if infectedSwitch.isOn == false {
+            infectedLineShown = false
+        } else {
+            infectedLineShown = true
+        }
+        if survivedSwitch.isOn == false {
+            survivedLineShown = false
+        } else {
+            survivedLineShown = true
+        }
+        if deceasedSwitch.isOn == false {
+            deceasedLineShown = false
+        } else {
+            deceasedLineShown = true
+        }
+    }
+    
     
     
     //Formatting each line of data. Required after every alteration of data (due to how the library works).
@@ -114,7 +150,20 @@ class SimulationViewController: UIViewController {
         let susChartDataSet = LineChartDataSet(entries: susceptibleDataEntries, label: "Susceptible")
         let survChartDataSet = LineChartDataSet(entries: survivedDataEntries, label: "Survived")
         let decChartDataSet = LineChartDataSet(entries: deceasedDataEntries, label: "Deceased")
-        let chartData = LineChartData(dataSets: [susChartDataSet, infChartDataSet, survChartDataSet, decChartDataSet])
+        var dataSets = [LineChartDataSet]()
+        if susceptibleLineShown == true {
+            dataSets.append(susChartDataSet)
+        }
+        if infectedLineShown == true {
+            dataSets.append(infChartDataSet)
+        }
+        if survivedLineShown == true {
+            dataSets.append(survChartDataSet)
+        }
+        if deceasedLineShown == true {
+            dataSets.append(decChartDataSet)
+        }
+        let chartData = LineChartData(dataSets: dataSets)
         dataSetFormatting(chartDataSet: infChartDataSet, colour: .red)
         dataSetFormatting(chartDataSet: susChartDataSet, colour: .blue)
         dataSetFormatting(chartDataSet: survChartDataSet, colour: .gray)

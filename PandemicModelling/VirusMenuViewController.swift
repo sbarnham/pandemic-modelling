@@ -39,7 +39,7 @@ class VirusMenuViewController: UIViewController, UITextFieldDelegate {
         populationField.placeholder = String(Aspects.population)
         r0Field.placeholder = String(Aspects.r0)
         diseaseLengthField.placeholder = String(Aspects.diseaseLength)
-        averageMortalityRateField.placeholder = String(Aspects.averageMortalityRate * 100)
+        averageMortalityRateField.placeholder = String(Aspects.averageMortalityRate)
         activationThresholdSDField.placeholder = String(Aspects.socialDistancingActivationThreshold)
         // Do any additional setup after loading the view.
     }
@@ -77,7 +77,7 @@ class VirusMenuViewController: UIViewController, UITextFieldDelegate {
         Aspects.population = Int(populationField.text!) ?? 50000
         Aspects.r0 = Double(r0Field.text!) ?? 3
         Aspects.diseaseLength = Int(diseaseLengthField.text!) ?? 6
-        Aspects.averageMortalityRate = ((Double(averageMortalityRateField.text!) ?? 2) / 100.0)
+        Aspects.averageMortalityRate = Double(averageMortalityRateField.text!) ?? 2
         Aspects.socialDistancingActivationThreshold = Int(activationThresholdSDField.text!) ?? 20000
     }
     
@@ -95,10 +95,10 @@ class VirusMenuViewController: UIViewController, UITextFieldDelegate {
         if Aspects.r0 > 18 {
             errorAlert(error: "This R0 is larger than any defined R0 of a virus. The simulation is likely to be unrealistic.", severity: "M", textField: textField)
         }
-        if Aspects.averageMortalityRate > 1 || Aspects.averageMortalityRate < 0 {
+        if Aspects.averageMortalityRate > 100 || Aspects.averageMortalityRate < 0 {
             errorAlert(error: "Mortality rate is not between 0 and 100%.", severity: "S", textField: textField)
         }
-        if Aspects.socialDistancingActivationThreshold < (Aspects.population / 5) {
+        if Aspects.socialDistancingActivationThreshold < 100 {
             errorAlert(error: "Social distancing activation threshold is low, and may not be reflected in real life.", severity: "M", textField: textField)
         }
     }
@@ -125,10 +125,12 @@ class VirusMenuViewController: UIViewController, UITextFieldDelegate {
             lockdownLabel.frame.origin = CGPoint(x: 20, y: 353)
             lockdownButton.frame.origin = CGPoint(x: 293, y: 353)
             hideLabels = true
+            Aspects.socialDistancing = false
         } else {
             hideLabels = false
             lockdownLabel.frame.origin = CGPoint(x: 20, y: 501)
             lockdownButton.frame.origin = CGPoint(x: 293, y: 501)
+            Aspects.socialDistancing = true
         }
         socialDistancingSlider.isHidden = hideLabels
         socialDistancingSliderValue.isHidden = hideLabels
