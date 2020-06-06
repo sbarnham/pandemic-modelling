@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		5A6A806624745F4F00A5B131 /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AC4F74A2474027400153B34 /* Charts.framework */; };
 		5A6A806724745F4F00A5B131 /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5AC4F74A2474027400153B34 /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		5A8A3E95248C135E00AD8BD9 /* PandemicModellingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE085912469D8B6005F0831 /* PandemicModellingTests.swift */; };
 		5AD8D422247BF2EB00D81867 /* VirusMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD8D421247BF2EB00D81867 /* VirusMenuViewController.swift */; };
 		5AE0857B2469D8B5005F0831 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE0857A2469D8B5005F0831 /* AppDelegate.swift */; };
 		5AE0857D2469D8B5005F0831 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE0857C2469D8B5005F0831 /* SceneDelegate.swift */; };
@@ -16,7 +17,6 @@
 		5AE085822469D8B5005F0831 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5AE085802469D8B5005F0831 /* Main.storyboard */; };
 		5AE085842469D8B6005F0831 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5AE085832469D8B6005F0831 /* Assets.xcassets */; };
 		5AE085872469D8B6005F0831 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5AE085852469D8B6005F0831 /* LaunchScreen.storyboard */; };
-		5AE085922469D8B6005F0831 /* PandemicModellingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE085912469D8B6005F0831 /* PandemicModellingTests.swift */; };
 		5AE0859D2469D8B6005F0831 /* PandemicModellingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE0859C2469D8B6005F0831 /* PandemicModellingUITests.swift */; };
 		5AE085AB2469DBBE005F0831 /* Modeller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE085AA2469DBBE005F0831 /* Modeller.swift */; };
 		5AE085AD2469DBE8005F0831 /* Aspects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE085AC2469DBE8005F0831 /* Aspects.swift */; };
@@ -165,8 +165,8 @@
 		5AE085902469D8B6005F0831 /* PandemicModellingTests */ = {
 			isa = PBXGroup;
 			children = (
-				5AE085912469D8B6005F0831 /* PandemicModellingTests.swift */,
 				5AE085932469D8B6005F0831 /* Info.plist */,
+				5AE085912469D8B6005F0831 /* PandemicModellingTests.swift */,
 			);
 			path = PandemicModellingTests;
 			sourceTree = "<group>";
@@ -355,7 +355,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5AE085922469D8B6005F0831 /* PandemicModellingTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -363,6 +362,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5A8A3E95248C135E00AD8BD9 /* PandemicModellingTests.swift in Sources */,
 				5AE0859D2469D8B6005F0831 /* PandemicModellingUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

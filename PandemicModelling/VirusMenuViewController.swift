@@ -21,11 +21,21 @@ class VirusMenuViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var socialDistancingSlider: UISlider!
     @IBOutlet var lockdownLabel: UILabel!
     @IBOutlet var lockdownButton: UISwitch!
-    @IBOutlet var activationThresholdSDField: UITextField!
+    @IBOutlet var activationThresholdField: UITextField!
     @IBOutlet var activationThresholdExplainer: UILabel!
     @IBOutlet var activationThresholdLabel: UILabel!
-    var hideLabels = true
-
+    @IBOutlet var lockdownStartLabel: UILabel!
+    @IBOutlet var lockdownStartField: UITextField!
+    @IBOutlet var lockdownStartExplainer: UILabel!
+    @IBOutlet var lockdownLengthLabel: UILabel!
+    @IBOutlet var lockdownLengthField: UITextField!
+    @IBOutlet var lockdownLengthExplainer: UILabel!
+    @IBOutlet var lockdownSlider: UISlider!
+    @IBOutlet var lockdownEffectExplainer: UILabel!
+    @IBOutlet var lockdownSliderValue: UILabel!
+    
+    var hideSDLabels = true
+    var hideLLabels = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,13 +44,17 @@ class VirusMenuViewController: UIViewController, UITextFieldDelegate {
         textFieldSetup(textField: r0Field)
         textFieldSetup(textField: diseaseLengthField)
         textFieldSetup(textField: averageMortalityRateField)
-        textFieldSetup(textField: activationThresholdSDField)
+        textFieldSetup(textField: activationThresholdField)
+        textFieldSetup(textField: lockdownStartField)
+        textFieldSetup(textField: lockdownLengthField)
         self.view.backgroundColor = UIColor(red: 0.76, green: 0.87, blue: 0.91, alpha: 1)
         populationField.placeholder = String(Aspects.population)
         r0Field.placeholder = String(Aspects.r0)
         diseaseLengthField.placeholder = String(Aspects.diseaseLength)
         averageMortalityRateField.placeholder = String(Aspects.averageMortalityRate)
-        activationThresholdSDField.placeholder = String(Aspects.socialDistancingActivationThreshold)
+        activationThresholdField.placeholder = String(Aspects.socialDistancingActivationThreshold)
+        lockdownStartField.placeholder = String(Aspects.lockdownStart)
+        lockdownLengthField.placeholder = String(Aspects.lockdownLength)
         // Do any additional setup after loading the view.
     }
     
@@ -65,11 +79,16 @@ class VirusMenuViewController: UIViewController, UITextFieldDelegate {
     }
     
     
-    @IBAction func sliderValueChanged(_ sender: Any) {
+    @IBAction func socialDistancingSliderValueChanged(_ sender: Any) {
         socialDistancingSliderValue.text = String(format: "%.0f", socialDistancingSlider.value)
         Aspects.socialDistancingEffect = Double(1 - (socialDistancingSlider.value / 100))
     }
     
+    
+    @IBAction func lockdownSliderValueChanged(_ sender: Any) {
+        lockdownSliderValue.text = String(format: "%.0f", lockdownSlider.value)
+        Aspects.lockdownEffect = Double(1 - (lockdownSlider.value / 100))
+    }
     
     
     
@@ -78,7 +97,9 @@ class VirusMenuViewController: UIViewController, UITextFieldDelegate {
         Aspects.r0 = Double(r0Field.text!) ?? 3
         Aspects.diseaseLength = Int(diseaseLengthField.text!) ?? 6
         Aspects.averageMortalityRate = Double(averageMortalityRateField.text!) ?? 2
-        Aspects.socialDistancingActivationThreshold = Int(activationThresholdSDField.text!) ?? 20000
+        Aspects.socialDistancingActivationThreshold = Int(activationThresholdField.text!) ?? 20000
+        Aspects.lockdownLength = Int(lockdownLengthField.text!) ?? 14
+        Aspects.lockdownStart = Int(lockdownStartField.text!) ?? 6
     }
     
     func checkForWarnings(textField: UITextField) {
@@ -116,7 +137,12 @@ class VirusMenuViewController: UIViewController, UITextFieldDelegate {
     }
     
     
-    @IBAction func socialDistancingButtonPressed(_ sender: Any) {
+    @IBAction func socialDistancingToggled(_ sender: Any) {
+        labelMovement()
+    }
+    
+    
+    @IBAction func lockdownToggled(_ sender: Any) {
         labelMovement()
     }
     
@@ -124,20 +150,61 @@ class VirusMenuViewController: UIViewController, UITextFieldDelegate {
         if socialDistancingButton.isOn == false {
             lockdownLabel.frame.origin = CGPoint(x: 20, y: 353)
             lockdownButton.frame.origin = CGPoint(x: 293, y: 353)
-            hideLabels = true
+            hideSDLabels = true
             Aspects.socialDistancing = false
+            if lockdownButton.isOn == false {
+                Aspects.lockdown = false
+                hideLLabels = true
+            } else {
+                hideLLabels = false
+                Aspects.lockdown = true
+                lockdownStartLabel.frame.origin = CGPoint(x: 28, y: 402)
+                lockdownLengthLabel.frame.origin = CGPoint(x: 28, y: 463)
+                lockdownLengthField.frame.origin = CGPoint(x: 264, y: 397)
+                lockdownStartField.frame.origin = CGPoint(x: 264, y: 458)
+                lockdownStartExplainer.frame.origin = CGPoint(x: 26, y: 423)
+                lockdownLengthExplainer.frame.origin = CGPoint(x: 26, y: 484)
+                lockdownSlider.frame.origin = CGPoint(x: 23, y: 514)
+                lockdownSliderValue.frame.origin = CGPoint(x: 184, y: 540)
+                lockdownEffectExplainer.frame.origin = CGPoint(x: 25, y: 550)
+            }
         } else {
-            hideLabels = false
+            hideSDLabels = false
             lockdownLabel.frame.origin = CGPoint(x: 20, y: 501)
             lockdownButton.frame.origin = CGPoint(x: 293, y: 501)
             Aspects.socialDistancing = true
+            if lockdownButton.isOn == true {
+                Aspects.lockdown = true
+                hideLLabels = false
+                lockdownStartLabel.frame.origin = CGPoint(x: 28, y: 541)
+                lockdownLengthLabel.frame.origin = CGPoint(x: 28, y: 602)
+                lockdownLengthField.frame.origin = CGPoint(x: 264, y: 596)
+                lockdownStartField.frame.origin = CGPoint(x: 264, y: 538)
+                lockdownStartExplainer.frame.origin = CGPoint(x: 26, y: 562)
+                lockdownLengthExplainer.frame.origin = CGPoint(x: 26, y: 619)
+                lockdownSlider.frame.origin = CGPoint(x: 23, y: 649)
+                lockdownSliderValue.frame.origin = CGPoint(x: 184, y: 676)
+                lockdownEffectExplainer.frame.origin = CGPoint(x: 25, y: 687)
+            } else {
+                hideLLabels = true
+                Aspects.lockdown = false
+            }
         }
-        socialDistancingSlider.isHidden = hideLabels
-        socialDistancingSliderValue.isHidden = hideLabels
-        socialDistancingExplainer.isHidden = hideLabels
-        activationThresholdSDField.isHidden = hideLabels
-        activationThresholdExplainer.isHidden = hideLabels
-        activationThresholdLabel.isHidden = hideLabels
+        socialDistancingSlider.isHidden = hideSDLabels
+        socialDistancingSliderValue.isHidden = hideSDLabels
+        socialDistancingExplainer.isHidden = hideSDLabels
+        activationThresholdField.isHidden = hideSDLabels
+        activationThresholdExplainer.isHidden = hideSDLabels
+        activationThresholdLabel.isHidden = hideSDLabels
+        lockdownStartLabel.isHidden = hideLLabels
+        lockdownStartField.isHidden = hideLLabels
+        lockdownStartExplainer.isHidden = hideLLabels
+        lockdownLengthField.isHidden = hideLLabels
+        lockdownLengthLabel.isHidden = hideLLabels
+        lockdownLengthExplainer.isHidden = hideLLabels
+        lockdownSlider.isHidden = hideLLabels
+        lockdownEffectExplainer.isHidden = hideLLabels
+        lockdownSliderValue.isHidden = hideLLabels
     }
     /*
     // MARK: - Navigation

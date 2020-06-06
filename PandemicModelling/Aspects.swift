@@ -13,10 +13,13 @@ class Aspects {
     static var averageMortalityRate: Double = 20
     static var population: Int = 50000
     static var diseaseLength: Int = 6
-    static var lockdownAbidingRate: Double = 0
     static var socialDistancing: Bool = true
     static var socialDistancingEffect: Double = 50
     static var socialDistancingActivationThreshold: Int = 20000
+    static var lockdown: Bool = false
+    static var lockdownStart: Int = 6
+    static var lockdownLength: Int = 14
+    static var lockdownEffect: Double = 50
     static var vaccinationRate: Double = 0
     static var invalidData: Bool = false
 }
