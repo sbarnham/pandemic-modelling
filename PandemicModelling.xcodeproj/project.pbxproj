@@ -11,6 +11,7 @@
 		5A6A806724745F4F00A5B131 /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5AC4F74A2474027400153B34 /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5A8A3E95248C135E00AD8BD9 /* PandemicModellingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE085912469D8B6005F0831 /* PandemicModellingTests.swift */; };
 		5A979F2A248D51B00007816C /* ExampleVirusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A979F29248D51B00007816C /* ExampleVirusViewController.swift */; };
+		5AD33431248D71DB00E21662 /* StartScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD33430248D71DB00E21662 /* StartScreenViewController.swift */; };
 		5AD8D422247BF2EB00D81867 /* VirusMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD8D421247BF2EB00D81867 /* VirusMenuViewController.swift */; };
 		5AE0857B2469D8B5005F0831 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE0857A2469D8B5005F0831 /* AppDelegate.swift */; };
 		5AE0857D2469D8B5005F0831 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE0857C2469D8B5005F0831 /* SceneDelegate.swift */; };
@@ -71,6 +72,7 @@
 /* Begin PBXFileReference section */
 		5A979F29248D51B00007816C /* ExampleVirusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleVirusViewController.swift; sourceTree = "<group>"; };
 		5AC4F7442474027400153B34 /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = "../../../Downloads/Charts-master/Charts.xcodeproj"; sourceTree = "<group>"; };
+		5AD33430248D71DB00E21662 /* StartScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartScreenViewController.swift; sourceTree = "<group>"; };
 		5AD8D421247BF2EB00D81867 /* VirusMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VirusMenuViewController.swift; sourceTree = "<group>"; };
 		5AE085772469D8B5005F0831 /* PandemicModelling.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PandemicModelling.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5AE0857A2469D8B5005F0831 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -129,8 +131,8 @@
 			isa = PBXGroup;
 			children = (
 				5AE085792469D8B5005F0831 /* PandemicModelling */,
-				5AE085902469D8B6005F0831 /* PandemicModellingTests */,
 				5AE0859B2469D8B6005F0831 /* PandemicModellingUITests */,
+				5AE085902469D8B6005F0831 /* PandemicModellingTests */,
 				5AE085782469D8B5005F0831 /* Products */,
 				5AC4F7442474027400153B34 /* Charts.xcodeproj */,
 				5AEF1E60247422BE00B8FFBF /* Frameworks */,
@@ -153,6 +155,7 @@
 				5AE0857A2469D8B5005F0831 /* AppDelegate.swift */,
 				5AE0857C2469D8B5005F0831 /* SceneDelegate.swift */,
 				5AE0857E2469D8B5005F0831 /* SimulationViewController.swift */,
+				5AD33430248D71DB00E21662 /* StartScreenViewController.swift */,
 				5AE085802469D8B5005F0831 /* Main.storyboard */,
 				5AE085832469D8B6005F0831 /* Assets.xcassets */,
 				5AE085852469D8B6005F0831 /* LaunchScreen.storyboard */,
@@ -352,6 +355,7 @@
 				5AD8D422247BF2EB00D81867 /* VirusMenuViewController.swift in Sources */,
 				5AE0857B2469D8B5005F0831 /* AppDelegate.swift in Sources */,
 				5AE0857D2469D8B5005F0831 /* SceneDelegate.swift in Sources */,
+				5AD33431248D71DB00E21662 /* StartScreenViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

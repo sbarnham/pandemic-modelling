@@ -26,6 +26,8 @@ class ExampleVirusViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor(red: 0.76, green: 0.87, blue: 0.91, alpha: 1)
+        turnAllVirusButtonsOn()
+        turnAllPopulationButtonsOn()
         // Do any additional setup after loading the view.
     }
     
@@ -87,19 +89,19 @@ class ExampleVirusViewController: UIViewController {
     }
     
     @IBAction func us(_ sender: Any) {
-        populationSetup(population: 328200000, button: ukButton)
+        populationSetup(population: 328200000, button: usButton)
     }
     
     @IBAction func china(_ sender: Any) {
-        populationSetup(population: 1393000000, button: ukButton)
+        populationSetup(population: 1393000000, button: chinaButton)
     }
     
     @IBAction func russia(_ sender: Any) {
-        populationSetup(population: 144500000, button: ukButton)
+        populationSetup(population: 144500000, button: russiaButton)
     }
     
     @IBAction func world(_ sender: Any) {
-        populationSetup(population: 7800000000, button: ukButton)
+        populationSetup(population: 7800000000, button: worldButton)
     }
     
     
