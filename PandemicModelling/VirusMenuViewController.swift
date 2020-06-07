@@ -69,6 +69,7 @@ class VirusMenuViewController: UIViewController, UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         textField.backgroundColor = .white
     }
+    
     func textFieldDidEndEditing(_ textField: UITextField) {
         saveAspects()
         if textField.text! != "" {
@@ -96,13 +97,13 @@ class VirusMenuViewController: UIViewController, UITextFieldDelegate {
     
     
     func saveAspects() {
-        Aspects.population = Int(populationField.text!) ?? 50000
-        Aspects.r0 = Double(r0Field.text!) ?? 3
-        Aspects.diseaseLength = Int(diseaseLengthField.text!) ?? 6
-        Aspects.averageMortalityRate = Double(averageMortalityRateField.text!) ?? 2
-        Aspects.socialDistancingActivationThreshold = Int(activationThresholdField.text!) ?? 20000
-        Aspects.lockdownLength = Int(lockdownLengthField.text!) ?? 14
-        Aspects.lockdownStart = Int(lockdownStartField.text!) ?? 6
+        Aspects.population = Int(populationField.text!) ?? Int(populationField.placeholder!)!
+        Aspects.r0 = Double(r0Field.text!) ?? Double(r0Field.placeholder!)!
+        Aspects.diseaseLength = Int(diseaseLengthField.text!) ?? Int(diseaseLengthField.placeholder!)!
+        Aspects.averageMortalityRate = Double(averageMortalityRateField.text!) ?? Double(averageMortalityRateField.placeholder!)!
+        Aspects.socialDistancingActivationThreshold = Int(activationThresholdField.text!) ?? Int(activationThresholdField.placeholder!)!
+        Aspects.lockdownLength = Int(lockdownLengthField.text!) ?? Int(lockdownLengthField.placeholder!)!
+        Aspects.lockdownStart = Int(lockdownStartField.text!) ?? Int(lockdownStartField.placeholder!)!
     }
     
     func checkForWarnings(textField: UITextField) {
