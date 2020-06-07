@@ -10,6 +10,7 @@
 		5A6A806624745F4F00A5B131 /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AC4F74A2474027400153B34 /* Charts.framework */; };
 		5A6A806724745F4F00A5B131 /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5AC4F74A2474027400153B34 /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5A8A3E95248C135E00AD8BD9 /* PandemicModellingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE085912469D8B6005F0831 /* PandemicModellingTests.swift */; };
+		5A979F2A248D51B00007816C /* ExampleVirusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A979F29248D51B00007816C /* ExampleVirusViewController.swift */; };
 		5AD8D422247BF2EB00D81867 /* VirusMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD8D421247BF2EB00D81867 /* VirusMenuViewController.swift */; };
 		5AE0857B2469D8B5005F0831 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE0857A2469D8B5005F0831 /* AppDelegate.swift */; };
 		5AE0857D2469D8B5005F0831 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE0857C2469D8B5005F0831 /* SceneDelegate.swift */; };
@@ -68,6 +69,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5A979F29248D51B00007816C /* ExampleVirusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleVirusViewController.swift; sourceTree = "<group>"; };
 		5AC4F7442474027400153B34 /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = "../../../Downloads/Charts-master/Charts.xcodeproj"; sourceTree = "<group>"; };
 		5AD8D421247BF2EB00D81867 /* VirusMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VirusMenuViewController.swift; sourceTree = "<group>"; };
 		5AE085772469D8B5005F0831 /* PandemicModelling.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PandemicModelling.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -158,6 +160,7 @@
 				5AE085AA2469DBBE005F0831 /* Modeller.swift */,
 				5AE085AC2469DBE8005F0831 /* Aspects.swift */,
 				5AD8D421247BF2EB00D81867 /* VirusMenuViewController.swift */,
+				5A979F29248D51B00007816C /* ExampleVirusViewController.swift */,
 			);
 			path = PandemicModelling;
 			sourceTree = "<group>";
@@ -345,6 +348,7 @@
 				5AE085AD2469DBE8005F0831 /* Aspects.swift in Sources */,
 				5AE0857F2469D8B5005F0831 /* SimulationViewController.swift in Sources */,
 				5AE085AB2469DBBE005F0831 /* Modeller.swift in Sources */,
+				5A979F2A248D51B00007816C /* ExampleVirusViewController.swift in Sources */,
 				5AD8D422247BF2EB00D81867 /* VirusMenuViewController.swift in Sources */,
 				5AE0857B2469D8B5005F0831 /* AppDelegate.swift in Sources */,
 				5AE0857D2469D8B5005F0831 /* SceneDelegate.swift in Sources */,

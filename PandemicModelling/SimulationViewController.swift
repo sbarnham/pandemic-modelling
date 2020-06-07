@@ -81,7 +81,7 @@ class SimulationViewController: UIViewController {
             self.deceased = round(Double(tuple.2) * (Aspects.averageMortalityRate / 100))
             self.susceptibleLabel.text = "Susceptible: \(tuple.0)"
             self.infectedLabel.text = "Infected: \(tuple.1)"
-            self.survivedLabel.text = "Survived: \(tuple.2)"
+            self.survivedLabel.text = "Survived: \(tuple.2 - Int(self.deceased))"
             self.deceasedLabel.text = "Deceased: \(Int(self.deceased))"
             self.modeller.day += 1
             self.susceptibleDataEntries.append(ChartDataEntry(x: Double(self.modeller.day), y: Double(tuple.0)))

@@ -48,6 +48,10 @@ class VirusMenuViewController: UIViewController, UITextFieldDelegate {
         textFieldSetup(textField: lockdownStartField)
         textFieldSetup(textField: lockdownLengthField)
         self.view.backgroundColor = UIColor(red: 0.76, green: 0.87, blue: 0.91, alpha: 1)
+        // Do any additional setup after loading the view.
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
         populationField.placeholder = String(Aspects.population)
         r0Field.placeholder = String(Aspects.r0)
         diseaseLengthField.placeholder = String(Aspects.diseaseLength)
@@ -55,7 +59,6 @@ class VirusMenuViewController: UIViewController, UITextFieldDelegate {
         activationThresholdField.placeholder = String(Aspects.socialDistancingActivationThreshold)
         lockdownStartField.placeholder = String(Aspects.lockdownStart)
         lockdownLengthField.placeholder = String(Aspects.lockdownLength)
-        // Do any additional setup after loading the view.
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

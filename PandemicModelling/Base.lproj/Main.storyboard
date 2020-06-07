@@ -356,6 +356,147 @@
             </objects>
             <point key="canvasLocation" x="1650.7246376811595" y="122.54464285714285"/>
         </scene>
+        <!--Example Viruses-->
+        <scene sceneID="ufu-Jn-O53">
+            <objects>
+                <viewController id="xPy-mh-dKm" customClass="ExampleVirusViewController" customModule="PandemicModelling" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="hDV-Zw-kQ6">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Stuck? Try one of these viruses to simulate:" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VGQ-h8-ByN">
+                                <rect key="frame" x="20" y="55" width="374" height="69"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Pick a country/region:" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3NW-32-RFr">
+                                <rect key="frame" x="21" y="337" width="374" height="69"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yHV-ye-lAd">
+                                <rect key="frame" x="22" y="574" width="190" height="69"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7wA-aT-oGX">
+                                <rect key="frame" x="162" y="143" width="91" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="COVID-19"/>
+                                <connections>
+                                    <action selector="covid19:" destination="xPy-mh-dKm" eventType="touchUpInside" id="GuA-pe-He5"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A2B-vD-YLy">
+                                <rect key="frame" x="182" y="182" width="49" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Ebola"/>
+                                <connections>
+                                    <action selector="ebola:" destination="xPy-mh-dKm" eventType="touchUpInside" id="aQN-HX-xfw"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XrF-va-Kci">
+                                <rect key="frame" x="167" y="220" width="80" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Swine flu"/>
+                                <connections>
+                                    <action selector="swineFlu:" destination="xPy-mh-dKm" eventType="touchUpInside" id="Lom-jr-DeY"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F4g-6E-tMG">
+                                <rect key="frame" x="159" y="257" width="97" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Spanish flu"/>
+                                <connections>
+                                    <action selector="spanishFlu:" destination="xPy-mh-dKm" eventType="touchUpInside" id="Ukc-B6-B2o"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sFF-q9-Evb">
+                                <rect key="frame" x="171" y="295" width="73" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Measles"/>
+                                <connections>
+                                    <action selector="measles:" destination="xPy-mh-dKm" eventType="touchUpInside" id="iVx-CD-afG"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OfE-RD-7qr">
+                                <rect key="frame" x="138" y="413" width="141" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="United Kingdom"/>
+                                <connections>
+                                    <action selector="uk:" destination="xPy-mh-dKm" eventType="touchUpInside" id="7N4-gE-4qA"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cef-R1-Xsd">
+                                <rect key="frame" x="149" y="452" width="118" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="United States"/>
+                                <connections>
+                                    <action selector="us:" destination="xPy-mh-dKm" eventType="touchUpInside" id="AYW-kD-8xd"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g2d-YL-vPU">
+                                <rect key="frame" x="183" y="490" width="51" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="China"/>
+                                <connections>
+                                    <action selector="china:" destination="xPy-mh-dKm" eventType="touchUpInside" id="uei-J5-50E"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fEv-Eu-Xgs">
+                                <rect key="frame" x="180" y="530" width="58" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Russia"/>
+                                <connections>
+                                    <action selector="russia:" destination="xPy-mh-dKm" eventType="touchUpInside" id="rgX-vk-zey"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2p5-qJ-5zp">
+                                <rect key="frame" x="183" y="570" width="52" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="World"/>
+                                <connections>
+                                    <action selector="world:" destination="xPy-mh-dKm" eventType="touchUpInside" id="GJL-KN-jw0"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="jMt-Gh-TzN"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Example Viruses" image="pin.circle.fill" catalog="system" id="sSx-yp-qLx"/>
+                    <connections>
+                        <outlet property="chinaButton" destination="g2d-YL-vPU" id="Lci-xw-6Om"/>
+                        <outlet property="covid19Button" destination="7wA-aT-oGX" id="H5j-T0-eLA"/>
+                        <outlet property="ebolaButton" destination="A2B-vD-YLy" id="eLj-9a-M7f"/>
+                        <outlet property="measlesButton" destination="sFF-q9-Evb" id="6Rd-9q-o1H"/>
+                        <outlet property="russiaButton" destination="fEv-Eu-Xgs" id="MXg-jv-kxY"/>
+                        <outlet property="spanishFluButton" destination="F4g-6E-tMG" id="adH-U9-GQw"/>
+                        <outlet property="swineFluButton" destination="XrF-va-Kci" id="FOt-gQ-Tg4"/>
+                        <outlet property="ukButton" destination="OfE-RD-7qr" id="owu-WF-cfI"/>
+                        <outlet property="usButton" destination="Cef-R1-Xsd" id="EwL-71-6YR"/>
+                        <outlet property="worldButton" destination="2p5-qJ-5zp" id="YRb-Sa-bD2"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9Zq-aO-oGi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2485.507246376812" y="122.54464285714285"/>
+        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="psq-2f-V73">
             <objects>
@@ -369,6 +510,7 @@
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="on0-hs-Pv5"/>
                         <segue destination="ZNx-OS-EUL" kind="relationship" relationship="viewControllers" id="PCw-JK-dBp"/>
+                        <segue destination="xPy-mh-dKm" kind="relationship" relationship="viewControllers" id="Wdx-QF-2J6"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rX9-ix-v2h" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -378,6 +520,7 @@
     </scenes>
     <resources>
         <image name="pencil" catalog="system" width="64" height="56"/>
+        <image name="pin.circle.fill" catalog="system" width="64" height="60"/>
         <image name="power" catalog="system" width="64" height="62"/>
     </resources>
 </document>
