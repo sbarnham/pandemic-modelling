@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Charts
+import Charts //A 3rd-party framework that allows the creation of many charts. I have used a line chart in my application.
 
 class SimulationViewController: UIViewController {
     
@@ -22,6 +22,7 @@ class SimulationViewController: UIViewController {
     @IBOutlet var survivedSwitch: UISwitch!
     @IBOutlet var deceasedSwitch: UISwitch!
     
+    //Declaration of local variables and instantiation of the Modeller class.
     var modeller = Modeller()
     var infectedDataEntries: [ChartDataEntry] = []
     var susceptibleDataEntries: [ChartDataEntry] = []
@@ -52,7 +53,7 @@ class SimulationViewController: UIViewController {
         lineChart.xAxis.drawGridLinesEnabled = false
         lineChart.leftAxis.axisMinimum = 0
         lineChart.leftAxis.labelFont = .boldSystemFont(ofSize: 12)
-        lineChart.leftAxis.granularity = 1
+        lineChart.leftAxis.granularity = 1 //Makes sure the spacings of the Y Axis are integers only.
         lineChart.leftAxis.drawGridLinesEnabled = false
         updateChartData()
         
@@ -72,22 +73,27 @@ class SimulationViewController: UIViewController {
         susceptibleDataEntries.append(ChartDataEntry(x: 0, y: Double(modeller.susceptible)))
         infectedDataEntries.append(ChartDataEntry(x: 0, y: 1))
         survivedDataEntries.append(ChartDataEntry(x: 0, y: 0))
-        Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { timer in
+        //Timer ensures the chart is animated, and new data is added every 2/5 of a second.
+        Timer.scheduledTimer(withTimeInterval: 0.4, repeats: true) { timer in
             //Loop stops when the virus is eradicated from the population.
             if self.modeller.infected == 0 {
                 timer.invalidate()
             }
+            //runs the Modeller simulate() function
             let tuple = self.modeller.simulate()
             self.deceased = round(Double(tuple.2) * (Aspects.averageMortalityRate / 100))
+            //updates the labels on-screen
             self.susceptibleLabel.text = "Susceptible: \(tuple.0)"
             self.infectedLabel.text = "Infected: \(tuple.1)"
             self.survivedLabel.text = "Survived: \(tuple.2 - Int(self.deceased))"
             self.deceasedLabel.text = "Deceased: \(Int(self.deceased))"
             self.modeller.day += 1
+            //updates the data entries for the chart
             self.susceptibleDataEntries.append(ChartDataEntry(x: Double(self.modeller.day), y: Double(tuple.0)))
             self.infectedDataEntries.append(ChartDataEntry(x: Double(self.modeller.day), y: Double(tuple.1)))
             self.survivedDataEntries.append(ChartDataEntry(x: Double(self.modeller.day), y: Double(tuple.2) - Double(self.deceased)))
             self.deceasedDataEntries.append(ChartDataEntry(x: Double(self.modeller.day), y: Double(self.deceased)))
+            //updates the visualisation of the line chart with the data entries
             self.updateChartData()
         }
         
@@ -136,8 +142,8 @@ class SimulationViewController: UIViewController {
     
     //Formatting each line of data. Required after every alteration of data (due to how the library works).
     fileprivate func dataSetFormatting(chartDataSet: LineChartDataSet, colour: UIColor) {
-        chartDataSet.mode = .cubicBezier
-        chartDataSet.cubicIntensity = 0.05
+        chartDataSet.mode = .cubicBezier //Data set mode alters the line effect. Cubic Bezier is a smooth line.
+        chartDataSet.cubicIntensity = 0.05 //Minimum intensity to prevent any overstretch of the line. This happens when values change suddenly.
         chartDataSet.lineWidth = 3
         chartDataSet.circleRadius = 2.5
         chartDataSet.setColor(colour)
@@ -149,11 +155,13 @@ class SimulationViewController: UIViewController {
     
     //Updates chart data after each call.
     func updateChartData() {
+        //Creation of data sets from data entries, as well as labelling them so they are presented effectively.
         let infChartDataSet = LineChartDataSet(entries: infectedDataEntries, label: "Infected")
         let susChartDataSet = LineChartDataSet(entries: susceptibleDataEntries, label: "Susceptible")
         let survChartDataSet = LineChartDataSet(entries: survivedDataEntries, label: "Survived")
         let decChartDataSet = LineChartDataSet(entries: deceasedDataEntries, label: "Deceased")
         var dataSets = [LineChartDataSet]()
+        //These four selection statements are decided by the switches next to the labels. If a switch is off, its corresponding data set is removed from the line chart.
         if susceptibleLineShown == true {
             dataSets.append(susChartDataSet)
         }
@@ -171,6 +179,7 @@ class SimulationViewController: UIViewController {
         dataSetFormatting(chartDataSet: susChartDataSet, colour: .blue)
         dataSetFormatting(chartDataSet: survChartDataSet, colour: .gray)
         dataSetFormatting(chartDataSet: decChartDataSet, colour: .black)
+        //Mapping visualisation to data.
         lineChart.data = chartData
     }
     

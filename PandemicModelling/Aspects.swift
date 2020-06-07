@@ -8,6 +8,7 @@
 
 import Foundation
 
+//Static class; no need for instantiation and is accessed throughout all ViewControllers, requiring values to be maintained and not reset.
 class Aspects {
     static var r0: Double = 3
     static var averageMortalityRate: Double = 20

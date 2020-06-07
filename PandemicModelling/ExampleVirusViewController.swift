@@ -22,7 +22,7 @@ class ExampleVirusViewController: UIViewController {
     @IBOutlet var russiaButton: UIButton!
     @IBOutlet var worldButton: UIButton!
     
-    
+    //Make sure all buttons are enabled.
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor(red: 0.76, green: 0.87, blue: 0.91, alpha: 1)
@@ -30,6 +30,7 @@ class ExampleVirusViewController: UIViewController {
         turnAllPopulationButtonsOn()
         // Do any additional setup after loading the view.
     }
+    
     
     func turnAllVirusButtonsOn() {
         covid19Button.isEnabled = true
@@ -46,14 +47,16 @@ class ExampleVirusViewController: UIViewController {
         russiaButton.isEnabled = true
         worldButton.isEnabled = true
     }
-    
+    //Set data according to button pressed.
     fileprivate func virusAspectsSetup(mortalityRate: Double, r0: Double, button: UIButton) {
         Aspects.averageMortalityRate = mortalityRate
         Aspects.r0 = r0
         turnAllVirusButtonsOn()
-        button.isEnabled = false
+        button.isEnabled = false //Disable the button pressed, to signal to the user what selectin has been made.
     }
     
+    
+    //Functions triggered when their respective buttons are pressed.
     @IBAction func covid19(_ sender: Any) {
         virusAspectsSetup(mortalityRate: 2, r0: 2.5, button: covid19Button)
     }
@@ -83,7 +86,7 @@ class ExampleVirusViewController: UIViewController {
         turnAllPopulationButtonsOn()
         button.isEnabled = false
     }
-    
+
     @IBAction func uk(_ sender: Any) {
         populationSetup(population: 66500000, button: ukButton)
     }
@@ -103,20 +106,5 @@ class ExampleVirusViewController: UIViewController {
     @IBAction func world(_ sender: Any) {
         populationSetup(population: 7800000000, button: worldButton)
     }
-    
-    
-    
-    
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

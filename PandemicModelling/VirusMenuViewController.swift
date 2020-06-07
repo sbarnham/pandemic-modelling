@@ -37,6 +37,7 @@ class VirusMenuViewController: UIViewController, UITextFieldDelegate {
     var hideSDLabels = true
     var hideLLabels = true
     
+    //make sure labels are in the right place as well as text fields displaying correctly
     override func viewDidLoad() {
         super.viewDidLoad()
         labelMovement()
@@ -51,6 +52,8 @@ class VirusMenuViewController: UIViewController, UITextFieldDelegate {
         // Do any additional setup after loading the view.
     }
     
+    
+    //Every time this view is loaded onto the screen, make sure the correct placeholders are set with the correct data
     override func viewDidAppear(_ animated: Bool) {
         populationField.placeholder = String(Aspects.population)
         r0Field.placeholder = String(Aspects.r0)
@@ -61,41 +64,42 @@ class VirusMenuViewController: UIViewController, UITextFieldDelegate {
         lockdownLengthField.placeholder = String(Aspects.lockdownLength)
     }
     
+    //Called when the 'Return' key is pressed on the keyboard.
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
+        textField.resignFirstResponder() //Keyboard disappears.
         return true
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        textField.backgroundColor = .white
+        textField.backgroundColor = .white //Reset any flagged error colours.
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        saveAspects()
-        if textField.text! != "" {
+        saveAspects() //Save all data entered.
+        if textField.text! != "" { //If there is some data entered
             checkForWarnings(textField: textField)
         }
     }
     
     func textFieldSetup(textField: UITextField) {
-        textField.text?.removeAll()
+        textField.text?.removeAll() //Makes sure the text field is empty
         textField.delegate = self
     }
     
     
     @IBAction func socialDistancingSliderValueChanged(_ sender: Any) {
-        socialDistancingSliderValue.text = String(format: "%.0f", socialDistancingSlider.value)
-        Aspects.socialDistancingEffect = Double(1 - (socialDistancingSlider.value / 100))
+        socialDistancingSliderValue.text = String(format: "%.0f", socialDistancingSlider.value) //Update the value below the slider as it is scrolled.
+        Aspects.socialDistancingEffect = Double(1 - (socialDistancingSlider.value / 100)) //Convert percentage to ratio.
     }
     
     
     @IBAction func lockdownSliderValueChanged(_ sender: Any) {
-        lockdownSliderValue.text = String(format: "%.0f", lockdownSlider.value)
-        Aspects.lockdownEffect = Double(1 - (lockdownSlider.value / 100))
+        lockdownSliderValue.text = String(format: "%.0f", lockdownSlider.value) //Update the value below the slider as it is scrolled.
+        Aspects.lockdownEffect = Double(1 - (lockdownSlider.value / 100)) //Convert percentage to ratio.
     }
     
     
-    
+    //Saves data every time the user has stopped typing in a text field. If there is no text in the text field, the placeholder value is used. Force unwrapping the placeholder is justified here since the placeholder will never be empty.
     func saveAspects() {
         Aspects.population = Int(populationField.text!) ?? Int(populationField.placeholder!)!
         Aspects.r0 = Double(r0Field.text!) ?? Double(r0Field.placeholder!)!
@@ -105,7 +109,13 @@ class VirusMenuViewController: UIViewController, UITextFieldDelegate {
         Aspects.lockdownLength = Int(lockdownLengthField.text!) ?? Int(lockdownLengthField.placeholder!)!
         Aspects.lockdownStart = Int(lockdownStartField.text!) ?? Int(lockdownStartField.placeholder!)!
     }
-    
+    /*
+    Validation checker to see if the data entered by the user is valid.
+     Various conditions exist for each data point, and if one of them is met, the errorAlert() function is called with a set message and severity.
+     Severities:
+     'S' means severe and is colour coded red. The simulation will not run.
+     'M' means moderate and is colour coded orange. The simulation will run, but it may not be accurate.
+     */
     func checkForWarnings(textField: UITextField) {
         Aspects.invalidData = false
         if Aspects.population <= 0 {
@@ -128,14 +138,16 @@ class VirusMenuViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    //Presents an action sheet error to the user with the specified message, telling them the recommended course of action.
     func errorAlert(error: String, severity: String, textField: UITextField) {
         let alert = UIAlertController(title: "Incorrect/boundary input", message: "Please rectify the following error(s): \n\(error)", preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
         self.present(alert, animated: true)
+        //Set offending text field to a colour depending on severity.
         if severity == "S" {
-            textField.backgroundColor = UIColor(red: 1, green: 0, blue: 0, alpha: 0.3)
+            textField.backgroundColor = UIColor(red: 1, green: 0, blue: 0, alpha: 0.3) //red
         } else {
-            textField.backgroundColor = UIColor(red: 1, green: 0.647, blue: 0, alpha: 0.3)
+            textField.backgroundColor = UIColor(red: 1, green: 0.647, blue: 0, alpha: 0.3) //orange
         }
         Aspects.invalidData = true
     }
@@ -150,16 +162,17 @@ class VirusMenuViewController: UIViewController, UITextFieldDelegate {
         labelMovement()
     }
     
+    //Performs the function of a 'drop-down' menu, by revealing and concealing contents of the 'Social Distancing' and 'Lockdown' data depending on their toggle.
     func labelMovement() {
         if socialDistancingButton.isOn == false {
             lockdownLabel.frame.origin = CGPoint(x: 20, y: 353)
             lockdownButton.frame.origin = CGPoint(x: 293, y: 353)
             hideSDLabels = true
             Aspects.socialDistancing = false
-            if lockdownButton.isOn == false {
+            if lockdownButton.isOn == false { //If SD + L are not enforced
                 Aspects.lockdown = false
                 hideLLabels = true
-            } else {
+            } else { //If SD is not enforced but L is. All Lockdown labels, text fields and slider must be moved upwards.
                 hideLLabels = false
                 Aspects.lockdown = true
                 lockdownStartLabel.frame.origin = CGPoint(x: 28, y: 402)
@@ -177,7 +190,7 @@ class VirusMenuViewController: UIViewController, UITextFieldDelegate {
             lockdownLabel.frame.origin = CGPoint(x: 20, y: 501)
             lockdownButton.frame.origin = CGPoint(x: 293, y: 501)
             Aspects.socialDistancing = true
-            if lockdownButton.isOn == true {
+            if lockdownButton.isOn == true { //If SD + L are enforced. All Lockdown labels must be moved to the bottom end of the screen.
                 Aspects.lockdown = true
                 hideLLabels = false
                 lockdownStartLabel.frame.origin = CGPoint(x: 28, y: 541)
@@ -194,6 +207,7 @@ class VirusMenuViewController: UIViewController, UITextFieldDelegate {
                 Aspects.lockdown = false
             }
         }
+        //Labels hidden depending on the Social Distancing hide label value and the Lockdown hide label value.
         socialDistancingSlider.isHidden = hideSDLabels
         socialDistancingSliderValue.isHidden = hideSDLabels
         socialDistancingExplainer.isHidden = hideSDLabels
@@ -210,14 +224,5 @@ class VirusMenuViewController: UIViewController, UITextFieldDelegate {
         lockdownEffectExplainer.isHidden = hideLLabels
         lockdownSliderValue.isHidden = hideLLabels
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
     
 }
